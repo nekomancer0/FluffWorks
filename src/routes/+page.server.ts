@@ -2,11 +2,14 @@ import * as auth from '$lib/server/auth';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
+import { db } from '$lib/server/db';
+import * as table from '$lib/server/db/schema';
+
 export const load: PageServerLoad = async (event) => {
-	if (!event.locals.user) {
-		return redirect(302, '/demo/lucia/login');
-	}
-	return { user: event.locals.user };
+	let updates = await db.select().from(table.update);
+	let products = await db.select().from(table.product);
+
+	return { user: event.locals.user || null, updates, products };
 };
 
 export const actions: Actions = {
@@ -17,6 +20,6 @@ export const actions: Actions = {
 		await auth.invalidateSession(event.locals.session.id);
 		event.cookies.delete(auth.sessionCookieName, { path: '/' });
 
-		return redirect(302, '/demo/lucia/login');
+		// return redirect(302, '/login');
 	}
 };

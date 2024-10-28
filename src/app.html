@@ -4,9 +4,16 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
+		<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.css" />
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<div
+			id="snipcart"
+			data-api-key="NGMzZDIxM2UtMDQyMy00YjhiLWIzY2MtYzliYjNjYjE0NjM5NjM4NjU2NjkyNDEzODgwNjA5"
+			hidden
+		></div>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
