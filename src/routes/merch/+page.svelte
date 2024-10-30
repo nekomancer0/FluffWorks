@@ -1,7 +1,6 @@
-<script lang="ts">
-	import Navbar from './components/Navbar.svelte';
-	import Product from './components/Product.svelte';
-	import Updates from './components/Updates.svelte';
+<script>
+	import Navbar from '../components/Navbar.svelte';
+	import Product from '../components/Product.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
 	export let data;
@@ -10,15 +9,14 @@
 <Navbar />
 
 <div class="container">
-	<Updates updates={data.updates} />
 	<div class="recent_merch">
-		<h1>{m.recent_merch()}</h1>
+		<h1>{m.the_merch()}</h1>
 
 		<div class="merchs">
 			{#if data.products.length === 0}
 				<p class="nothing_text">{m.nomerch()}</p>
 			{/if}
-			{#each data.products.slice(0, 4) as product}
+			{#each data.products as product}
 				<Product
 					product={{
 						description: product.description,
@@ -43,10 +41,11 @@
 		margin-bottom: 3%;
 
 		.recent_merch {
+			text-overflow: clip;
+			overflow-y: auto;
+
 			margin-top: 2%;
 			height: 100%;
-			width: 100%;
-
 			display: flex;
 			flex-direction: column;
 
@@ -63,17 +62,14 @@
 		}
 	}
 
-	@media screen and (max-width: 768px) {
+	@media only screen and (max-width: 768px) {
 		.container {
 			flex-direction: column;
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: 2%;
-			gap: 20px;
 
-			.recent_merch {
-				gap: 30px;
-			}
+			gap: 20px;
 		}
 	}
 </style>

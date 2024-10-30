@@ -1,4 +1,15 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format",
-  "hello_world": "Hello, {name} from en!"
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"welcome": "Welcome {name}",
+	"error": "Error {status}",
+	"backhome": "Back to home",
+	"updates": "UPDATES",
+	"recent_merch": "RECENT MERCH",
+	"the_merch": "THE MERCH",
+	"projects": "Projects",
+	"about": "About",
+	"contact_us": "CONTACT US",
+	"join_us": "JOIN US",
+	"socials": "SOCIALS",
+	"nomerch": "We are not selling anything at the moment..."
 }

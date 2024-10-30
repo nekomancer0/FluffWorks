@@ -33,10 +33,10 @@
 	.product {
 		background-color: #d4af37;
 		box-shadow: 4px 4px 20px 1px black;
-		padding: 15px;
+		padding: 10px;
 		margin-inline: auto;
-		width: 48.5%;
-		height: 48%;
+		width: 390px;
+		height: 219px;
 
 		color: #fbfbfb;
 

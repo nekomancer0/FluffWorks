@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { user } from '$lib/stores/session';
+	import * as m from '$lib/paraglide/messages.js';
+	import Footer from './Footer.svelte';
 
-	export let user: { username: string; id: string } | null;
-
-	let menuOpen = false; // Variable pour ouvrir/fermer le menu mobile
+	let menuOpen = false;
 </script>
 
 <img src="/background.png" alt="" class="bg" />
@@ -23,17 +24,19 @@
 	<!-- Liens de navigation -->
 	<div class="links" class:open={menuOpen}>
 		<a href="/merch">Merch</a>
-		<a href="/projects">Projects</a>
-		<a href="/about">About</a>
+		<a href="/projects">{m.projects()}</a>
+		<a href="/about">{m.about()}</a>
 		<a href="/contact">Contact</a>
 
-		{#if !user}
+		{#if !$user}
 			<a href="/login" on:click={() => goto('/login')}>Login</a>
 			<a href="/register" on:click={() => goto('/register')}>Register</a>
 		{/if}
 
-		{#if user}
-			<p>Welcome {user.username}</p>
+		{#if $user}
+			<p>
+				{m.welcome({ name: $user.username })}
+			</p>
 		{/if}
 
 		<a class="snipcart-checkout" href="#">
@@ -42,6 +45,8 @@
 		</a>
 	</div>
 </nav>
+
+<Footer />
 
 <style lang="scss">
 	@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Dosis:wght@200..800&display=swap');
@@ -108,6 +113,7 @@
 		width: 100%;
 		background-size: auto;
 		background-position: 100% 100%;
+		opacity: 0.7;
 	}
 
 	@media screen and (max-width: 768px) {

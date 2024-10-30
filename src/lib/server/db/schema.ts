@@ -14,8 +14,8 @@ export const product = sqliteTable('product', {
 	id: text('id').primaryKey(),
 	name: text('name').notNull(),
 	image: text('image').notNull(),
-	shopify_url: text('shopify_url').notNull(),
-	description: text('description').notNull()
+	description: text('description').notNull(),
+	price: text('price').notNull()
 });
 
 export const update = sqliteTable('update', {

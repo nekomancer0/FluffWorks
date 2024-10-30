@@ -1,8 +1,9 @@
 import { sequence } from '@sveltejs/kit/hooks';
 import { dev } from '$app/environment';
 import * as auth from '$lib/server/auth.js';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle, HandleServerError } from '@sveltejs/kit';
 import { i18n } from '$lib/i18n';
+
 const handleParaglide: Handle = i18n.handle();
 
 const handleAuth: Handle = async ({ event, resolve }) => {
@@ -33,3 +34,10 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 };
 
 export const handle: Handle = sequence(handleParaglide, handleAuth);
+
+export const handleError: HandleServerError = ({ event, message, status, error }) => {
+	return {
+		message,
+		user: event.locals.user
+	};
+};

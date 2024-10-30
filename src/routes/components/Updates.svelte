@@ -1,9 +1,10 @@
 <script lang="ts">
 	export let updates: { text: string; date: string }[];
+	import * as m from '$lib/paraglide/messages.js';
 </script>
 
 <main>
-	<h1>UPDATES</h1>
+	<h1>{m.updates()}</h1>
 
 	<img src="/line.png" alt="" class="line" />
 	<div class="updates">

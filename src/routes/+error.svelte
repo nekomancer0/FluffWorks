@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import Navbar from './components/Navbar.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 </script>
 
-<Navbar></Navbar>
+<Navbar />
 
 <main>
 	<h1
@@ -15,7 +16,7 @@
 		md:text-5xl
 		lg:text-6xl"
 	>
-		Erreur {$page.status}
+		{m.error({ status: $page.status })}
 	</h1>
 	<p>{$page.error?.message}</p>
 	<a href="/">Retour à l'accueil</a>
