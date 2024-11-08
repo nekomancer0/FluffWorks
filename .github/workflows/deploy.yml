@@ -3,7 +3,7 @@ name: Deploy to VM
 on:
   push:
     branches:
-      - main  # ou la branche sur laquelle tu souhaites déclencher le déploiement
+      - master  # ou la branche sur laquelle tu souhaites déclencher le déploiement
 
 jobs:
   deploy:
