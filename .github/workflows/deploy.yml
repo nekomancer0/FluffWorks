@@ -18,6 +18,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Test IPv6 Connectivity
+        run: |
+         ping6 -c 3 "${{ secrets.VM_IP }}"
+    
       - name: Deploy to VM
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
+         rsync -avz -e "ssh -6 -o StrictHostKeyChecking=no" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
+
