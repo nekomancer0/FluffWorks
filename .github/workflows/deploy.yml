@@ -18,11 +18,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Test IPv6 Connectivity
+      - name: Configure known hosts
         run: |
-         ping -6v -c 3 "${{ secrets.VM_IP }}"
-    
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_IP }} ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsmgrlhIxKLbVQmbcicv23UTJYdkBUYyoj4YlaoydR2yf8MsLe//4Ir9wj1nWRNxBCIoWdRa+SBs8FYhLqhfD0ZGgrcfOtfsKcpNDJU7f/LvF9iXoax62ay2u6/x4z6NGmJZ9n0tYT/Ug8m8g/JzND/HbCUgHxyqJQk7ekrbVSihHimO+HvmddTZSrfpOQbJVFZ/rS+fj4nPgeKN5eLHu0KF1l+U+Jwklu+foGYu/NtUG37dw0hBxtBPRLDErN49isXxQoqGLSLvYaSSUXmpWivmKdd/mmfr+AbxPxyquQiwoCZ8zeTIjnU/XCZl9o4TuKzjaJCmAuQnU4S/APq4+7iBbHrm70UB47NSXyOMi8jtaBf8pYUjOrl7qksF68Y6bLvuDhi6FnW0ZhIuiMDpwhzLI0kMSI6M4lV8jG5KY/B1euwltoByFL0oGbEQuCTsRos+arMFOE4iMJw+gQa4A4LsZzW/1luZKLi9XViETayjvjYh3A2rUwYuUpW40Je7M=" >> ~/.ssh/known_hosts
+
       - name: Deploy to VM
         run: |
-         rsync -avz -e "ssh -6v -o StrictHostKeyChecking=no" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
-
+          rsync -avz -e "ssh -o StrictHostKeyChecking=yes" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
