@@ -25,4 +25,4 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          rsync -avz -e "ssh -6 -o StrictHostKeyChecking=yes" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
+          rsync -avz -e "ssh -6 -o StrictHostKeyChecking=yes" ./fluffworks root@[${{ secrets.VM_IP }}]:22
