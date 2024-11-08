@@ -3,7 +3,7 @@ name: Deploy to VM
 on:
   push:
     branches:
-      - master  # ou la branche sur laquelle tu souhaites déclencher le déploiement
+      - master
 
 jobs:
   deploy:
@@ -13,15 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_deploy_key
-          chmod 600 ~/.ssh/github_deploy_key
-          ssh-keyscan -H "${{ secrets.VM_IP }}" >> ~/.ssh/known_hosts
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to VM
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key" ./ user@${{ secrets.VM_IP }}:/fluffworks
+          ssh-keyscan -H "${{ secrets.VM_IP }}" >> ~/.ssh/known_hosts
+          rsync -avz -e "ssh" ./ root@${{ secrets.VM_IP }}:/fluffworks
