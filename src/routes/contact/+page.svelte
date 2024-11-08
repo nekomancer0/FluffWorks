@@ -1,10 +1,33 @@
 <script>
 	import Navbar from '../components/Navbar.svelte';
 	import * as m from '$lib/paraglide/messages.js';
+	import SvelteSeo from 'svelte-seo';
+	import { page } from '$app/stores';
 
 	export let data;
 </script>
 
+{#key $page.url.pathname}
+	<SvelteSeo
+		title="FluffWorks | Contact"
+		description="Contact FluffWorks"
+		keywords="fluffworks website furry company kemono furries fluffy fantasy video games game videos society board utility dev development web site services projects service project kemonomimi uwu owo"
+		openGraph={{
+			images: [{ url: '/logo.png' }],
+			title: 'FluffWorks | Contact',
+			description: 'Contact FluffWorks',
+			site_name: 'FluffWorks'
+		}}
+		applicationName="FluffWorks"
+		twitter={{
+			card: 'app',
+			creator: 'FluffWorks',
+			description: 'Contact FluffWorks',
+			image: '/logo.png',
+			title: 'FluffWorks | Contact'
+		}}
+	/>
+{/key}
 <Navbar />
 
 <div class="container">

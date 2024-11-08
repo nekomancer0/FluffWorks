@@ -1,8 +1,31 @@
 <script>
+	import { page } from '$app/stores';
 	import Navbar from '../components/Navbar.svelte';
-
+	import SvelteSeo from 'svelte-seo';
 	export let data;
 </script>
+
+{#key $page.url.pathname}
+	<SvelteSeo
+		title="FluffWorks | About"
+		description="About FluffWorks"
+		keywords="fluffworks website furry company kemono furries fluffy fantasy video games game videos society board utility dev development web site services projects service project kemonomimi uwu owo"
+		openGraph={{
+			images: [{ url: '/logo.png' }],
+			title: 'FluffWorks | About',
+			description: 'About FluffWorks',
+			site_name: 'FluffWorks'
+		}}
+		applicationName="FluffWorks"
+		twitter={{
+			card: 'app',
+			creator: 'FluffWorks',
+			description: 'About FluffWorks',
+			image: '/logo.png',
+			title: 'FluffWorks | About'
+		}}
+	/>
+{/key}
 
 <Navbar />
 

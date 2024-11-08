@@ -6,7 +6,7 @@
 	let { form }: { form: ActionData } = $props();
 </script>
 
-<Navbar user={null} />
+<Navbar />
 
 <div class="form w-full max-w-xs">
 	<form

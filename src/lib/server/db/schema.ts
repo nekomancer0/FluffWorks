@@ -67,6 +67,13 @@ export const session = sqliteTable('session', {
 	expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
 });
 
+export const chatMessage = sqliteTable('chat_messages', {
+	id: text('id').primaryKey(),
+	user_id: text('user_id').notNull(),
+	text: text('text').notNull(),
+	createdAt: text('created_at').notNull().unique()
+});
+
 export type Session = typeof session.$inferSelect;
 
 export type User = typeof user.$inferSelect;
@@ -74,3 +81,5 @@ export type User = typeof user.$inferSelect;
 export type Update = typeof update.$inferSelect;
 
 export type Product = typeof product.$inferSelect;
+
+export type ChatMessage = typeof chatMessage.$inferSelect;
