@@ -18,11 +18,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add VM to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -6 -H "[${{ secrets.VM_IP }}]" >> ~/.ssh/known_hosts
-
       - name: Deploy to VM
         run: |
           rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ root@[${{ secrets.VM_IP }}]:/fluffworks
