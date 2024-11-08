@@ -20,7 +20,7 @@ jobs:
 
       - name: Test IPv6 Connectivity
         run: |
-         ping6 -c 3 "[${{ secrets.VM_IP }}]"
+         ping6 -c 3 "root@[${{ secrets.VM_IP }}]"
     
       - name: Deploy to VM
         run: |
